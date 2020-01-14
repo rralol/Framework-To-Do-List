@@ -1,0 +1,11 @@
+<div class ="container">
+    <div class="row">
+        <button class="mat-raised-button mat-primary"
+        matTooltip = "Create New ToDo"
+        matTooltipPosition="right"
+        (click)="openDialog()"><mat-icon class ="button-icon">add</mat-icon></button>
+    </div>
+    <div class="row">
+        <app-listitem class="item-container" *ngFor = "let listitem of list" [item]="listitem"></app-listitem>
+    </div>
+</div>

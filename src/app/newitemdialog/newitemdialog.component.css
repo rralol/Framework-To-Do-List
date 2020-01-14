@@ -1,0 +1,56 @@
+.mat-form-field {
+    display: block;
+}
+h3 {
+    color: white;
+}
+span {
+    padding-left: 10px;
+}
+.mat-dialog-actions {
+    justify-content: end;
+}
+
+.mat-dialog-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    padding-bottom: 10px;
+}
+
+textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+
+.mat-input-element::placeholder {
+    color: rgba(255, 255, 255, 0.42);
+  }
+
+.mat-hint {
+    color: rgb(255, 255, 255, 0.5);
+}
+
+.mat-option {
+    background-color: rgb(130, 130, 130);
+}
+
+.mat-option:hover {
+    background-color: rgb(150, 150, 150);
+}
+
+.mat-icon {
+    text-align: center;
+    font-size: 25px;
+}
+
+.mat-raised-button:hover {
+    background-color: rgb(170, 170, 170);
+}
+
+.mat-raised-button.mat-primary:hover {
+    background-color: rgb(120, 150, 255);
+}

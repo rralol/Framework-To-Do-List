@@ -1,0 +1,77 @@
+<h3 met-dialog-title>New To-Do-Item</h3>
+
+<mat-dialog-content [formGroup]="form">
+  <div class="row" style="display: flex;">
+    <mat-form-field>
+      <mat-label>Item Title*</mat-label>
+      
+      <input
+        #input
+        maxlength="15"
+        matInput
+        placeholder="Put Title here..."
+        type="text"
+        formControlName="title"
+        (focus)="focusStateTitle = true" 
+        (focusout)="focusStateTitle = false"
+      />
+      <mat-icon matPrefix >list</mat-icon>
+      <mat-error *ngIf="form.controls['title'].invalid">Title is required</mat-error>
+      <mat-hint align="end" *ngIf="focusStateTitle">{{ input.value?.length || 0 }}/15</mat-hint>
+    </mat-form-field>
+    <span></span>
+    <mat-form-field>
+      <input
+        matInput
+        matInput
+        [min] ="currentdate"
+        [matDatepicker]="myDatepicker"
+        placeholder="Set Date*"
+        formControlName="date"
+      />
+      <mat-datepicker-toggle matSuffix [for]="myDatepicker">
+        <mat-datepicker [startAt]="currentdate" #matDatepicker></mat-datepicker>
+      </mat-datepicker-toggle>
+      <mat-datepicker #myDatepicker></mat-datepicker>
+      <mat-error *ngIf="form.controls['date'].invalid">Date is invalid</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    <mat-form-field>
+      <mat-label>Item Description</mat-label>
+      <input
+        matInput
+        #txtarea
+        maxlength="50"
+        placeholder="Put Description here..."
+        type="text"
+        formControlName="description"
+        (focus)="focusStateDesc = true" 
+        (focusout)="focusStateDesc = false"
+      >
+      <mat-icon matPrefix >subject</mat-icon>
+      <mat-hint align="end"*ngIf="focusStateDesc">{{ txtarea.value?.length || 0 }}/50</mat-hint>
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    <mat-form-field>
+      <mat-select placeholder="Select Priority*" formControlName="priority">
+        <mat-option value="1"> Low</mat-option>
+        <mat-option value="2"> Medium</mat-option>
+        <mat-option value="3"> High</mat-option>
+      </mat-select>
+      <mat-icon matPrefix >error</mat-icon>
+      <mat-error *ngIf="form.controls['priority'].invalid">Priority is required</mat-error>
+    </mat-form-field>
+  </div>
+</mat-dialog-content>
+
+<div class="row">
+  <mat-dialog-actions>
+    <button class="mat-raised-button cancle" (click)="close()">Cancle</button>
+    <span></span>
+    <button class="mat-raised-button mat-primary" (click)="save()">Add</button>
+  </mat-dialog-actions>
+</div>

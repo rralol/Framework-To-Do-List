@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="header-card">
+    <div class="title">{{ item.title }}</div>
+    <div class="spacer"></div>
+    <div class="date">{{ item.date.toISOString().slice(0, 10) }}</div>
+  </div>
+  <div class="sub-title">{{ item.description }}</div>
+  <div class="prio-container">
+    <div *ngIf="item.priority === '1'">
+      <mat-icon class="prio-icon">star</mat-icon>
+    </div>
+    <div *ngIf="item.priority === '2'">
+      <mat-icon class="prio-icon">star</mat-icon>
+      <mat-icon class="prio-icon">star</mat-icon>
+    </div>
+    <div *ngIf="item.priority === '3'">
+      <mat-icon class="prio-icon">star</mat-icon>
+      <mat-icon class="prio-icon">star</mat-icon>
+      <mat-icon class="prio-icon">star</mat-icon>
+    </div>
+  </div>
+  <div class="button-container">
+    <button
+      class="mat-raised-button done"
+      matTooltip="Mark as done"
+      matTooltipPosition="below"
+      (click)="test()"
+    >
+      <mat-icon class="button-icon">done</mat-icon>
+    </button>
+    <div class="spacer"></div>
+    <button
+      class="mat-raised-button edit"
+      matTooltip="Edit"
+      matTooltipPosition="below"
+      (click)="test()"
+    >
+      <mat-icon class="button-icon">create</mat-icon>
+    </button>
+    <span></span>
+    <button
+      class="mat-raised-button mat-warn"
+      matTooltip="Remove"
+      matTooltipPosition="below"
+      (click)="test()"
+    >
+      <mat-icon class="button-icon">clear</mat-icon>
+    </button>
+  </div>
+</div>
