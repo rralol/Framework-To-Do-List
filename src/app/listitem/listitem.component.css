@@ -89,3 +89,6 @@ span {
 .mat-raised-button.mat-warn:hover {
     background-color: rgb(238, 118, 118);
 }
+.item-completed {
+    text-decoration: line-through;
+}

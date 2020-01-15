@@ -1,10 +1,10 @@
 <div class="container">
   <div class="header-card">
-    <div class="title">{{ item.title }}</div>
+    <div [ngClass]="done ? 'item-completed' : ''" class="title">{{ item.title }}</div>
     <div class="spacer"></div>
-    <div class="date">{{ item.date.toISOString().slice(0, 10) }}</div>
+    <div [ngClass]="done ? 'item-completed' : ''" class="date">{{ item.date.toISOString().slice(0, 10) }}</div>
   </div>
-  <div class="sub-title">{{ item.description }}</div>
+  <div [ngClass]="done ? 'item-completed' : ''" class="sub-title">{{ item.description }}</div>
   <div class="prio-container">
     <div *ngIf="item.priority === '1'">
       <mat-icon class="prio-icon">star</mat-icon>
@@ -21,10 +21,11 @@
   </div>
   <div class="button-container">
     <button
-      class="mat-raised-button done"
+      [ngClass]="done ? '' : 'done'"
+      class="mat-raised-button"
       matTooltip="Mark as done"
       matTooltipPosition="below"
-      (click)="test()"
+      (click)="markDone()"
     >
       <mat-icon class="button-icon">done</mat-icon>
     </button>
@@ -33,7 +34,7 @@
       class="mat-raised-button edit"
       matTooltip="Edit"
       matTooltipPosition="below"
-      (click)="test()"
+      (click)="openDialog()"
     >
       <mat-icon class="button-icon">create</mat-icon>
     </button>
@@ -42,7 +43,7 @@
       class="mat-raised-button mat-warn"
       matTooltip="Remove"
       matTooltipPosition="below"
-      (click)="test()"
+      (click)="remove()"
     >
       <mat-icon class="button-icon">clear</mat-icon>
     </button>

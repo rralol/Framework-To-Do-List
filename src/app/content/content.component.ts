@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig} from "@angular/material";
 import { NewitemdialogComponent } from '../newitemdialog/newitemdialog.component';
 import {listItem} from '../item';
+import { DataService } from '../dataservice.service';
+import { ListitemComponent } from '../listitem/listitem.component';
 
 @Component({
   selector: 'app-content',
@@ -12,20 +14,18 @@ export class ContentComponent implements OnInit {
   
   list: listItem[];
 
-  constructor(private dialog: MatDialog) { this.list = new Array();}
+  constructor(
+    private dialog: MatDialog,
+    private dataService: DataService
+    ) 
+  { }
+
   ngOnInit() {
+    this.getList();
   }
 
-  getListLength() {
-    return this.list.length;
-  }
-
-  getItem(index: number) {
-    return this.list[index];
-  }
-
-  setItem(index: number, listitem: listItem) {
-    this.list[index] = listitem;
+  getList(): void {
+    this.dataService.getList().subscribe(list => this.list = list);
   }
 
   openDialog() {
@@ -39,9 +39,7 @@ export class ContentComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(
       data => {
-        console.log("Dialog output:", data);
-        if (data) this.list.push(data);
-        console.log(this.list);
+        if (data) this.dataService.addToList(data);
     }
   );    
   }

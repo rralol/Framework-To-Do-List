@@ -7,6 +7,7 @@ import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTI
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 
 import * as _moment from 'moment';
+import { listItem } from '../item';
 
 const moment = _moment;
 
@@ -36,19 +37,34 @@ export class NewitemdialogComponent implements OnInit {
 
   form: FormGroup;
   currentdate = moment();
+  edit: boolean;
 
   constructor(
     private fb: FormBuilder,
-    private dialogRef: MatDialogRef<NewitemdialogComponent>) { 
+    private dialogRef: MatDialogRef<NewitemdialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: listItem
+    ) {
+      if (data) {
+        this.edit = true;
+        this.form = this.fb.group({
+          title: [data.title, Validators.required],
+          description: [data.description,],
+          date: [data.date, Validators.required],
+          priority: [data.priority, Validators.required] 
+        });
+      } else {
+        this.edit = false;
+        this.form = this.fb.group({
+          title: ['', Validators.required],
+          description: ['',],
+          date: [this.currentdate, Validators.required],
+          priority: ['', Validators.required] 
+        });
+      }
   }
 
   ngOnInit() {
-    this.form = this.fb.group({
-      title: ['', Validators.required],
-      description: ['',],
-      date: [this.currentdate, Validators.required],
-      priority: ['', Validators.required] 
-    });
+
   }
 
   save() {

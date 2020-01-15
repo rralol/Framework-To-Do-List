@@ -1,5 +1,5 @@
-<h3 met-dialog-title>New To-Do-Item</h3>
-
+<h3 *ngIf="!edit" met-dialog-title>New To-Do-Item</h3>
+<h3 *ngIf="edit" met-dialog-title>Edit To-Do-Item</h3>
 <mat-dialog-content [formGroup]="form">
   <div class="row" style="display: flex;">
     <mat-form-field>
@@ -72,6 +72,7 @@
   <mat-dialog-actions>
     <button class="mat-raised-button cancle" (click)="close()">Cancle</button>
     <span></span>
-    <button class="mat-raised-button mat-primary" (click)="save()">Add</button>
+    <button  *ngIf="!edit" class="mat-raised-button mat-primary" (click)="save()">Add</button>
+    <button  *ngIf="edit" class="mat-raised-button mat-primary" (click)="save()">Confirm</button>
   </mat-dialog-actions>
 </div>
